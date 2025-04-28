@@ -1,5 +1,7 @@
 package com.Lisiniarivo.Application.Entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +21,9 @@ public class Deliverer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
 	
 	private String name;
 	private String contact;
