@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,7 +27,12 @@ public class Deliverer {
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	
+	@NotNull(message = "deliverer name should not be null")
+	@NotBlank(message = "deliverer should have a name")
 	private String name;
+	
+	@NotNull(message = "deliverer contact should not be null")
+	@NotBlank(message = "deliverer should have contact")
 	private String contact;
 
 }

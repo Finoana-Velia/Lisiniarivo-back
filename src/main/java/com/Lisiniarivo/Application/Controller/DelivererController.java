@@ -18,6 +18,7 @@ import com.Lisiniarivo.Application.Dto.DelivererRequestDto;
 import com.Lisiniarivo.Application.Dto.DelivererResponseDto;
 import com.Lisiniarivo.Application.Service.DelivererService;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -45,7 +46,7 @@ public class DelivererController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<DelivererResponseDto> create(@RequestBody DelivererRequestDto deliverer) {
+	public ResponseEntity<DelivererResponseDto> create(@Valid @RequestBody DelivererRequestDto deliverer) {
 		DelivererResponseDto delivererSaved = this.delivererService.createDeliverer(deliverer);
 		return ResponseEntity.status(HttpStatus.CREATED).body(delivererSaved);
 	}

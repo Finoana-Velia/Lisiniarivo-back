@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.Lisiniarivo.Application.Dto.DelivererRequestDto;
 import com.Lisiniarivo.Application.Dto.DelivererResponseDto;
 import com.Lisiniarivo.Application.Entity.Deliverer;
+import com.Lisiniarivo.Application.Exception.ResourceNotFoundException;
 import com.Lisiniarivo.Application.Repository.DelivererRepository;
 import com.Lisiniarivo.Application.Service.DelivererService;
 
@@ -33,7 +34,7 @@ public class DelivererServiceImpl implements DelivererService{
 		return this.delivererRepository.findById(id)
 				.map(deliverer -> toDto(deliverer,DelivererResponseDto.class))
 				.orElseThrow(
-//						() -> new ResourceNotFoundException("Deliverer : " + id + " not found")
+						() -> new ResourceNotFoundException("Deliverer : " + id + " not found")
 						);
 	}
 
@@ -55,14 +56,14 @@ public class DelivererServiceImpl implements DelivererService{
 					Deliverer delivererUpdated = this.delivererRepository.save(delivererEntity);
 					return toDto(delivererUpdated,DelivererResponseDto.class);
 				}).orElseThrow(
-						
+						() -> new ResourceNotFoundException("Deliverer : " + id + " not found")
 						);
 	}
 
 	@Override
 	public void deleteById(Long id) {
 		Deliverer delivererFound = this.delivererRepository.findById(id).orElseThrow(
-				
+				() -> new ResourceNotFoundException("Deliverer : " + id + " not found")
 				);
 		this.delivererRepository.deleteById(delivererFound.getId());
 	}
