@@ -1,5 +1,6 @@
 package com.Lisiniarivo.Application.Controller;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -82,4 +83,35 @@ public class ResponseControllerAdvice {
 		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
 	}
+	
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<ErrorResponse> illegalArgument(IllegalArgumentException exception) {
+		Map<String, String> errorMessage = new HashMap<>();
+		errorMessage.put("error", exception.getMessage());
+		ErrorResponse errorResponse = ErrorResponse.builder()
+				.statusCode(400)
+				.errorType(ErrorType.INPUT_MISMATCH)
+				.details(errorMessage)
+				.suggestion("Please make sure that the given value is correct")
+				.timeStamp(LocalDateTime.now())
+				.build();
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+	}
+	
+	@ExceptionHandler(IOException.class)
+	public ResponseEntity<ErrorResponse> ioException(IOException exception) {
+		Map<String, String> errorMessage = new HashMap<>();
+		errorMessage.put("error", exception.getMessage());
+		
+		ErrorResponse errorResponse = ErrorResponse.builder()
+				.statusCode(400)
+				.errorType(ErrorType.FILE_UPLOAD_ERROR)
+				.details(errorMessage)
+				.suggestion("Make sure that your file match with the requirement")
+				.build();
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+	}
+	
+	
 }

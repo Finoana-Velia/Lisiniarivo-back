@@ -8,6 +8,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import static com.Lisiniarivo.Application.Core.EntityMapper.toDto;
+import static com.Lisiniarivo.Application.Core.EntityMapper.toEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,20 +105,21 @@ public class DelivererServiceTest {
 	@Test
 	@DisplayName("Test create deliverer succed, respect all validation")
 	void testCreateDeliverer() {
-		Deliverer deliverer1 = Deliverer.builder()
+		Deliverer request = Deliverer.builder()
 				.name("Faliana")
 				.contact("1234567890")
 				.build();
 		
-		when(this.delivererRepository.save(deliverer1)).thenReturn(deliverer1);
+		when(this.delivererRepository.save(request)).thenReturn(request);
 		
-		DelivererRequestDto request = toDto(deliverer1,DelivererRequestDto.class);
-		DelivererResponseDto deliverer2 = this.delivererService.createDeliverer(request);
-		DelivererResponseDto response = toDto(deliverer1,DelivererResponseDto.class);
+		DelivererRequestDto requestSaved = toDto(request,DelivererRequestDto.class);
+		DelivererResponseDto response = this.delivererService.createDeliverer(requestSaved);
 		
+		
+	
 		assertAll(
-				() -> assertNotNull(deliverer2),
-				() -> assertEquals(deliverer2.getName(), response.getName())
+				() -> assertNotNull(response),
+				() -> assertEquals(request.getName(),response.getName())
 				);
 	}
 	
