@@ -49,6 +49,9 @@ public class ArticleServiceImpl implements ArticleService{
 		articleEntity.setId(id);
 		return this.articleRepository.findById(id)
 				.map(articleFound -> {
+					if(articleEntity.getImage() == null) {
+						articleEntity.setImage(articleFound.getImage());
+					}
 					articleEntity.setCreatedAt(articleFound.getCreatedAt());
 					articleEntity.setUpdatedAt(LocalDateTime.now());
 					Article articleUpdated = this.articleRepository.save(articleEntity);

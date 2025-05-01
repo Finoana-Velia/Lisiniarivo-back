@@ -20,6 +20,12 @@ import com.Lisiniarivo.Application.Service.ArticleService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
+import static com.Lisiniarivo.Application.Core.FileManagement.registerFile;
+import static com.Lisiniarivo.Application.Core.FileManagement.updateFile;
+import static com.Lisiniarivo.Application.Core.FileManagement.deleteFile;
+
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/api/v1/article")
 @AllArgsConstructor
@@ -48,8 +54,16 @@ public class ArticleContoller {
 	public ResponseEntity<ArticleDto> create(
 			@Valid ArticleDto article,
 			@RequestParam MultipartFile file
-			) {
-		ArticleDto articleSaved = this.articleService.createArticle(article);
+			) throws IllegalStateException, IOException {
+		ArticleDto articleSaved;
+		if(!file.isEmpty()) {
+			article.setImage(file.getOriginalFilename());
+			articleSaved = this.articleService.createArticle(article);
+			registerFile(file,"article",articleSaved.getId());
+		}else {
+			articleSaved = this.articleService.createArticle(article);
+		}
+		
 		return ResponseEntity.status(HttpStatus.CREATED).body(articleSaved);
 	}
 	
@@ -57,14 +71,22 @@ public class ArticleContoller {
 	public ResponseEntity<ArticleDto> update(
 			@PathVariable Long id,
 			@Valid ArticleDto article,
-			@RequestParam(required = false) MultipartFile file) {
-		ArticleDto articleUpdated = this.articleService.updateArticle(id, article);
+			@RequestParam(required = false) MultipartFile file) throws IllegalStateException, IOException {
+		ArticleDto articleUpdated;
+		if(file != null) {
+			article.setImage(file.getOriginalFilename());
+			articleUpdated = this.articleService.updateArticle(id, article);
+			updateFile(file, "article" , id);
+		}else {
+			articleUpdated = this.articleService.updateArticle(id, article);
+		}
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(articleUpdated);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		this.articleService.deleteById(id);
+		deleteFile(id,"article");
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 	
