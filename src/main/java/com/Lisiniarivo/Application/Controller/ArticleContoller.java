@@ -1,5 +1,6 @@
 package com.Lisiniarivo.Application.Controller;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,7 +25,11 @@ import lombok.AllArgsConstructor;
 import static com.Lisiniarivo.Application.Core.FileManagement.registerFile;
 import static com.Lisiniarivo.Application.Core.FileManagement.updateFile;
 import static com.Lisiniarivo.Application.Core.FileManagement.deleteFile;
+import static com.Lisiniarivo.Application.Core.FileManagement.getFile;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @RestController
@@ -48,6 +54,13 @@ public class ArticleContoller {
 	public ResponseEntity<ArticleDto> findById(@PathVariable Long id) {
 		ArticleDto article = this.articleService.findById(id);
 		return ResponseEntity.status(HttpStatus.OK).body(article);
+	}
+	
+	@GetMapping("/image")
+	@ResponseBody
+	public byte[] getImage(Long id) throws FileNotFoundException, IOException {
+		File file = getFile(id,"article");
+		return IOUtils.toByteArray(new FileInputStream(file));
 	}
 	
 	@PostMapping

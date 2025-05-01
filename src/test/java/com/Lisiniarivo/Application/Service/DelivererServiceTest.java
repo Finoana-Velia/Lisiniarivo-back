@@ -87,7 +87,7 @@ public class DelivererServiceTest {
 	}
 	
 	@Test
-	@DisplayName("Test deliverer by id")
+	@DisplayName("Test find deliverer by id")
 	void testFindById() {
 		Long id = 1L;
 	
