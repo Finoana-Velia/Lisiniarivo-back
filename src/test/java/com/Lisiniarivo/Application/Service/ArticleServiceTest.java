@@ -119,23 +119,23 @@ public class ArticleServiceTest {
 		return List.of(
 				Article.builder()
 				.name("T-shirt").image("T-shirt.png").availability(true)
-				.price(20000.00).category(Category.T_SHIRT)
+				.price(20000.00).category(Category.HAUT)
 				.color(Set.of("Blue","Black","Green","Red","White"))
-				.sizes(Set.of(Size.ENFANT,Size.M,Size.S,Size.L))
+				.sizes(Set.of(Size.DEUX_ANS,Size.M,Size.S,Size.L))
 				.description("Avec DTF personnalisable")
 				.build(),
 				Article.builder()
 				.name("Ensemble").image("Ensemble.jpg").availability(true)
 				.price(30000.00).category(Category.ENSEMBLE)
 				.color(Set.of("Pink","white","green"))
-				.sizes(Set.of(Size.ENFANT,Size.M,Size.S,Size.L))
+				.sizes(Set.of(Size.DEUX_ANS,Size.M,Size.S,Size.L))
 				.description("Avec DTF le haut et bas")
 				.build(),
 				Article.builder()
 				.name("Robe").image("robe.jpg").availability(true)
 				.price(30000.00).category(Category.ROBE)
 				.color(Set.of("Pink","white","green"))
-				.sizes(Set.of(Size.ENFANT,Size.M,Size.S,Size.L))
+				.sizes(Set.of(Size.M,Size.S,Size.L))
 				.description("Avec DTF le haut et bas")
 				.build()
 				);

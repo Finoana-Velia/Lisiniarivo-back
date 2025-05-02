@@ -6,7 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum Category {
-	T_SHIRT("T-shirt"),SHORT("Short"),ENSEMBLE("Ensemble"),ROBE("Robe");
+	HAUT("Haut"),BAS("Bas"),ENSEMBLE("Ensemble"),ROBE("Robe");
 	
 	private String value;
 }
