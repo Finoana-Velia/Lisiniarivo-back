@@ -1,1 +1,4 @@
 /home/finoana/Projects/Lisiniarivo/back/src/test/java/com/Lisiniarivo/Application/BackApplicationTests.java
+/home/finoana/Projects/Lisiniarivo/back/src/test/java/com/Lisiniarivo/Application/Controller/DelivererContollerTest.java
+/home/finoana/Projects/Lisiniarivo/back/src/test/java/com/Lisiniarivo/Application/Service/ArticleServiceTest.java
+/home/finoana/Projects/Lisiniarivo/back/src/test/java/com/Lisiniarivo/Application/Service/DelivererServiceTest.java
