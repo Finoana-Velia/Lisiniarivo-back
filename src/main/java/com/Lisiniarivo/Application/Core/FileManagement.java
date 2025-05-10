@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 public class FileManagement {
 	
 	private static String home = System.getProperty("user.home");
-	private static String rootPath = home + File.separator + "files" + File.separator;
+	private static String rootPath = home + File.separator + "Lisiniarivo_files" + File.separator;
 	private static String filePath;
 
 	private static void createMainFolder() {

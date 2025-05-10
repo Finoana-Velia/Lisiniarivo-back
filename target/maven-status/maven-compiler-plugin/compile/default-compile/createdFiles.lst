@@ -18,6 +18,7 @@ com/Lisiniarivo/Application/Entity/Article$ArticleBuilder.class
 com/Lisiniarivo/Application/Dto/ArticleDto$ArticleDtoBuilder.class
 com/Lisiniarivo/Application/Core/EntityMapper.class
 com/Lisiniarivo/Application/Dto/DelivererResponseDto.class
+com/Lisiniarivo/Application/Configuration/AppConfig.class
 com/Lisiniarivo/Application/Dto/DelivererResponseDto$DelivererResponseDtoBuilder.class
 com/Lisiniarivo/Application/Core/FileManagement.class
 com/Lisiniarivo/Application/Controller/DelivererController.class

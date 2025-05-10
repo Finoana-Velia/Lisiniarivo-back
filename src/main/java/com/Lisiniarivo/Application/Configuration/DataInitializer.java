@@ -1,5 +1,6 @@
 package com.Lisiniarivo.Application.Configuration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
@@ -10,6 +11,7 @@ import com.Lisiniarivo.Application.Entity.Deliverer;
 import com.Lisiniarivo.Application.Repository.DelivererRepository;
 
 import lombok.AllArgsConstructor;
+import net.datafaker.Faker;
 
 @Component
 @AllArgsConstructor
@@ -17,6 +19,7 @@ import lombok.AllArgsConstructor;
 public class DataInitializer implements CommandLineRunner{
 	
 	private final DelivererRepository delivererRepository;
+	private final Faker faker = new Faker();
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -24,18 +27,27 @@ public class DataInitializer implements CommandLineRunner{
 	}
 	
 	private void generateDeliverer() {
-		this.delivererRepository.saveAll(
-				List.of(
-			Deliverer.builder()
-			.name("Emilson")
-			.contact("+1234567890")
-			.build(),
-			Deliverer.builder()
-			.name("Victor")
-			.contact("+7891234560")
-			.build()
-						)
-				);
+		List<Deliverer> deliverers = new ArrayList<>();
+		for(int i=0; i<15;i++) {
+			deliverers.add(Deliverer.builder()
+					.name(faker.name().lastName())
+					.contact(faker.phoneNumber().phoneNumber())
+					.build());
+		}
+		this.delivererRepository.saveAll(deliverers);
+//		this.delivererRepository.saveAll(
+//				List.of(
+//			Deliverer.builder()
+//			.name("Emilson")
+//			.contact("+1234567890")
+//			.build(),
+//			Deliverer.builder()
+//			.name("Victor")
+//			.contact("+7891234560")
+//			.build()
+//						)
+//				);
+		
 	}
 
 }
