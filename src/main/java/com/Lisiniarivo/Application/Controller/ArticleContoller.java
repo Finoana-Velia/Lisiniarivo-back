@@ -46,7 +46,7 @@ public class ArticleContoller {
 			@RequestParam(defaultValue="0") int page,
 			@RequestParam(defaultValue="0") int size
 			) {
-		PageRequest request = PageRequest.of(page, size);
+		PageRequest request = PageRequest.of(page, size != 0 ? size : Integer.MAX_VALUE);
 		Page<ArticleDto> articles = this.articleService.searchArticlebyName(name, request);
 		return ResponseEntity.status(HttpStatus.OK).body(articles);
 	}
