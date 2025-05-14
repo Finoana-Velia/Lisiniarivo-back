@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,7 +32,8 @@ public class Article {
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	
-	@NotNull
+	@NotNull(message = "Article's name should not be null")
+	@NotBlank(message = "Article should have a name")
 	private String name;
 	private String image;
 	private boolean availability;
