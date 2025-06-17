@@ -44,7 +44,7 @@ public class ArticleContoller {
 	public ResponseEntity<Page<ArticleDto>> searchArticle(
 			@RequestParam(defaultValue="")String name,
 			@RequestParam(defaultValue="0") int page,
-			@RequestParam(defaultValue="0") int size
+			@RequestParam(defaultValue="10") int size
 			) {
 		PageRequest request = PageRequest.of(page, size != 0 ? size : Integer.MAX_VALUE);
 		Page<ArticleDto> articles = this.articleService.searchArticlebyName(name, request);

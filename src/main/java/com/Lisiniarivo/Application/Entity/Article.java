@@ -48,9 +48,6 @@ public class Article {
 	@Enumerated(EnumType.STRING)
 	private Set<Size> sizes;
 	
-	@ElementCollection
-	private Set<String> color;
-	
 	@Lob
 	private String description;
 

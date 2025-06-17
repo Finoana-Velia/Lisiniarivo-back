@@ -53,7 +53,6 @@ public class ArticleControllerTest {
 				.param("price", "10000.00")
 				.param("catrgory","HAUT")
 				.param("size", "UN_AN").param("size", "DEUX_ANS")
-				.param("color","noir").param("color", "blanc")
 				.param("description", "Longue description de l'article"))
 		.andExpect(status().isCreated());
 	}
@@ -73,7 +72,6 @@ public class ArticleControllerTest {
 				.param("price", "10000.00")
 				.param("catrgory","HAUT")
 				.param("size", "UN_AN").param("size", "DEUX_ANS")
-				.param("color","noir").param("color", "blanc")
 				.param("description", "Longue description de l'article"))
 			.andExpect(status().isAccepted());
 	}

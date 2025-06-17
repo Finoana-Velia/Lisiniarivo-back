@@ -23,7 +23,6 @@ public class ArticleDto {
 	private double price;
 	private Category category;
 	private Set<Size> size;
-	private Set<String> color;
 	private String description;
 	
 }
