@@ -3,6 +3,7 @@ package com.Lisiniarivo.Application.Entity;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -48,7 +49,8 @@ public class Article {
 	@Enumerated(EnumType.STRING)
 	private Set<Size> sizes;
 	
-	@Lob
+//	@Lob
+	@Column(columnDefinition = "TEXT") // For postgresql IOD -> TEXT
 	private String description;
 
 }

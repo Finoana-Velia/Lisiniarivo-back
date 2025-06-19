@@ -13,6 +13,5 @@ import jakarta.transaction.Transactional;
 public interface ArticleRepository extends JpaRepository<Article,Long>{
 
 	@Query("select a from Article a where a.name like :x")
-	@Transactional
 	Page<Article> searchArticleByName(@Param("x")String name,Pageable pageable);
 }
