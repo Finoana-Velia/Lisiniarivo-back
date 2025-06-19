@@ -22,7 +22,7 @@ public class ArticleDto {
 	private boolean availability;
 	private double price;
 	private Category category;
-	private Set<Size> size;
+	private Set<Size> sizes;
 	private String description;
 	
 }
