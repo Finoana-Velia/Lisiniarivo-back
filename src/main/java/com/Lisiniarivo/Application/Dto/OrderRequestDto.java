@@ -23,7 +23,7 @@ public class OrderRequestDto {
 	private boolean delivered;
 	private Client client;
 	private List<CartDto> cartDto;
-	private Long idDeleiverer;
+	private Long idDeliverer;
 	private String description;
 
 }

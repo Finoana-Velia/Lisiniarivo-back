@@ -54,7 +54,7 @@ public class OrderServiceImpl implements OrderService{
 	public OrderResponseDto createOrder(OrderRequestDto orderRequest) {
 		Order order = toEntity(orderRequest, Order.class);
 		order.setCreatedAt(LocalDateTime.now());
-		order.setDeliverer(this.findDelivererById(orderRequest.getIdDeleiverer()));
+		order.setDeliverer(this.findDelivererById(orderRequest.getIdDeliverer()));
 //		List<Cart> orderLine = new ArrayList<>();
 //		for(CartDto item : orderRequest.getCartDto()) {
 //			Cart cart = Cart.builder()
@@ -77,7 +77,7 @@ public class OrderServiceImpl implements OrderService{
 			if(!orderFound.isDelivered()) {
 				order.setCreatedAt(orderFound.getCreatedAt());
 				order.setUpdatedAt(LocalDateTime.now());
-				order.setDeliverer(this.findDelivererById(orderRequest.getIdDeleiverer()));
+				order.setDeliverer(this.findDelivererById(orderRequest.getIdDeliverer()));
 				order.setCart(this.convertCartDto(orderRequest.getCartDto()));	
 				orderUpdate = this.orderRepository.save(order);
 				log.info(orderUpdate.getReference() + " has been updated");
