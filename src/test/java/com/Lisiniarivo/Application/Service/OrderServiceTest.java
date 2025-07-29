@@ -188,7 +188,8 @@ public class OrderServiceTest {
 //				);
 		
 		Assertions.assertNotNull(response);
-		Assertions.assertEquals
+		Assertions.assertEquals(response.getClient().getName(),request.getClient()); 
+		Assertions.assertEquals(response.getDeliverer().getId(), request.getIdDeliverer());	
 	}
 	
 	@Test
