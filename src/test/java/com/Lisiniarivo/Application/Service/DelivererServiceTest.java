@@ -103,7 +103,7 @@ public class DelivererServiceTest {
 	}
 	
 	@Test
-	@DisplayName("Test create deliverer succed, respect all validation")
+	@DisplayName("Test create deliverer succeed, respect all validation")
 	void testCreateDeliverer() {
 		Deliverer request = Deliverer.builder()
 				.name("Faliana")

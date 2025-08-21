@@ -2,12 +2,17 @@ package com.Lisiniarivo.Application.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import com.Lisiniarivo.Application.Entity.Article;
+import com.Lisiniarivo.Application.Entity.Category;
 import com.Lisiniarivo.Application.Entity.Deliverer;
+import com.Lisiniarivo.Application.Entity.Size;
+import com.Lisiniarivo.Application.Repository.ArticleRepository;
 import com.Lisiniarivo.Application.Repository.DelivererRepository;
 
 import lombok.AllArgsConstructor;
@@ -19,6 +24,7 @@ import net.datafaker.Faker;
 public class DataInitializer implements CommandLineRunner{
 	
 	private final DelivererRepository delivererRepository;
+	private final ArticleRepository articleRepository;
 	private final Faker faker = new Faker();
 	
 	@Override
@@ -35,19 +41,20 @@ public class DataInitializer implements CommandLineRunner{
 					.build());
 		}
 		this.delivererRepository.saveAll(deliverers);
-//		this.delivererRepository.saveAll(
-//				List.of(
-//			Deliverer.builder()
-//			.name("Emilson")
-//			.contact("+1234567890")
-//			.build(),
-//			Deliverer.builder()
-//			.name("Victor")
-//			.contact("+7891234560")
-//			.build()
-//						)
-//				);
-		
+		List<Article> articles = new ArrayList<>();
+		for(int i = 0; i < 11 ; i++) {
+			articles.add(Article.builder()
+					.name(faker.familyGuy().character())
+					.image(faker.file().fileName())
+					.availability(true)
+					.price(faker.money().hashCode())
+					.category(Category.ENSEMBLE)
+					.sizes(Set.of(Size.L,Size.M,Size.S,Size.XL,Size.XS,
+							Size.XXL,Size.XXXL))
+					.description(faker.text().text())
+					.build());
+		}
+		this.articleRepository.saveAll(articles);
 	}
 
 }
